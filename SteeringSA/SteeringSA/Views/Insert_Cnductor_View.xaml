@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="SteeringSA.Views.Insert_Cnductor_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SteeringSA.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    <Grid Background="#FFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--#region FORMULARIO-->
+        <Border Background="#F6F8FA"
+                Grid.Row="1"
+                Height="297" 
+                Width="690"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top" 
+                CornerRadius="5 5 5 5" 
+                BorderThickness="1"
+                BorderBrush="#E9E9E9" Margin="0,200,0,0"/>
+
+        <Grid Height="297"
+              Width="690" 
+              Grid.Row="1"  
+              Margin="0,200,0,0"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Nombre -->
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10 0 10 0">
+                <TextBlock Text="Nombre"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource Style_TextLabel}"/>
+                <TextBox Background="#FFF"
+                         Name="Txt_Nombre"
+                         BorderBrush="#89292929"
+                         FontSize="18" 
+                         
+                         FontFamily="Montserrat"
+                         />
+            </StackPanel>
+
+            <!-- Apellido -->
+            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10 0 10 0">
+                <TextBlock Text="Apellido"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource Style_TextLabel}"/>
+                <TextBox Background="#FFF"
+                         Name="Txt_Apellido"
+                         BorderBrush="#89292929"
+                         FontSize="18" 
+                         FontFamily="Montserrat"
+                         />
+            </StackPanel>
+
+            <!-- Cedula -->
+            <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10 0 10 0">
+                <TextBlock Text="Cédula"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource Style_TextLabel}"/>
+                <TextBox Background="#FFF"
+                         Name="Txt_Cedula"
+                         BorderBrush="#89292929" 
+                         FontSize="18" 
+                         FontFamily="Montserrat"/>
+            </StackPanel>
+
+            <!-- Fecha de Nacimiento -->
+            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10 0 10 0">
+                <TextBlock Text="Fecha de Nacimiento"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource Style_TextLabel}"/>
+                <!--<TextBox Background="#FFF" 
+                         BorderBrush="#89292929" 
+                         FontSize="14"
+                         FontFamily="Montserrat"/>-->
+                <DatePicker x:Name="Dtp_FechaNac"
+                            SelectedDateFormat="Short"
+                            BorderBrush="#FF1B1B1B"
+                            FontFamily="Montserrat"
+                            FontSize="18"
+                            FontWeight="Regular"
+                            />
+            </StackPanel>
+
+            <!-- Teléfono -->
+            <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 10 0">
+                <TextBlock Text="Teléfono"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource Style_TextLabel}"/>
+                <TextBox Background="#FFF"
+                         Name="Txt_Telefono"
+                         BorderBrush="#89292929" 
+                         FontSize="18" 
+                         FontFamily="Montserrat"/>
+            </StackPanel>
+
+            <!-- Tipo de Licencia -->
+            <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10 0 10 0">
+                <TextBlock Text="Tipo de Licencia"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource Style_TextLabel}"/>
+                <TextBox Background="#FFF"
+                         Name="Txt_TipoLicencia"
+                         BorderBrush="#89292929"
+                         FontSize="18"
+                         Width="50"
+                         HorizontalAlignment="Left"
+                         FontFamily="Montserrat"/>
+            </StackPanel>
+
+            <!-- Tipo de Sangre -->
+            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10 0 10 0">
+                <TextBlock Text="Tipo de Sangre"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource Style_TextLabel}"/>
+                <TextBox Background="#FFF"
+                         Name="Txt_TipoSangre" 
+                         BorderBrush="#89292929" 
+                         FontSize="18" 
+                         Width="50"
+                         HorizontalAlignment="Left"
+                         FontFamily="Montserrat"/>
+            </StackPanel>
+        </Grid>
+
+        <Button x:Name="Btn_RegistrarConductor"
+                Grid.Row="2"
+                Width="200"
+                Height="60"
+                Content="Registrar"
+                FontFamily="Montserrat"
+                FontSize="30"
+                FontWeight="Bold"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0 50 0 0"
+                Background="#2C974B"
+                BorderBrush="#2C974B"
+                BorderThickness="5"
+                Click="Btn_RegistrarConductor_Click"/>
+        <!--#endregion-->
+    </Grid>
+</UserControl>

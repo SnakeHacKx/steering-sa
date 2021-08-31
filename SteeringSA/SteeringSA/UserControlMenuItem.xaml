@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="SteeringSA.UserControlMenuItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SteeringSA"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <Grid>
+        <materialDesign:PackIcon Kind="{Binding Path=Icon}" 
+                                 Width="20" 
+                                 Height="20" 
+                                 Margin="10 16"
+                                 Foreground="White"/>
+        <!-- Dashboard -->
+        <ListBoxItem x:Name="ListViewItemMenu" 
+                     Content="{Binding Path=Header}"
+                     Padding="37 14"
+                     FontSize="18"
+                     Foreground="White"/>
+        
+        <!-- Texto de DropDownMenu -->
+        <Expander x:Name="ExpanderMenu"
+                  Header="{Binding Path=Header}"
+                  IsExpanded="False"
+                  Width="270"
+                  Margin="20 0 0 0"
+                  HorizontalAlignment="Left"
+                  Background="{x:Null}"
+                  FontSize="18"
+                  Foreground="White">
+           
+            <!-- Sub Items -->
+            <ListView x:Name="ListViewMenu" 
+                      ItemsSource="{Binding Path=SubItems}"
+                      Foreground="White"
+                      Margin="20 0 0 0"
+                      FontSize="14"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" Padding="20 5"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </Expander>
+    </Grid>
+</UserControl>

@@ -1,0 +1,294 @@
+﻿<Window x:Class="SteeringSA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SteeringSA"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodels="clr-namespace:SteeringSA.ViewModel"
+        xmlns:views="clr-namespace:SteeringSA.Views"
+    mc:Ignorable="d"
+        Title="SteeringSA" Height="720" Width="1280" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <!--#region ADMINISTRACION DE PANTALLAS -->
+    <Window.Resources>
+        <DataTemplate x:Name="ConductorViewTemplate"
+                      DataType="{x:Type viewmodels:ConductorViewModel}">
+            <views:ConductorView DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="VehiculoViewTemplate"
+                      DataType="{x:Type viewmodels:VehiculoViewModel}">
+            <views:VehiculoView DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="Insert_ConductorViewTemplate"
+                      DataType="{x:Type viewmodels:Insert_ConductorViewModel}">
+            <views:Insert_Cnductor_View DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="Update_ConductorViewTemplate"
+                      DataType="{x:Type viewmodels:Update_ConductorViewModel}">
+            <views:Update_Conductor_View DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="Delete_ConductorViewTemplate"
+                      DataType="{x:Type viewmodels:Delete_ConductorViewModel}">
+            <views:Delete_ConductorView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
+    <!--#endregion-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--#region HEADER -->
+        <Grid Background="#232323" Grid.ColumnSpan="2">
+            <WrapPanel Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Margin="0 0 20 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <materialDesign:PackIcon Kind="User"  
+                                         Grid.Column="0"
+                                        Width="50" 
+                                        Height="50" 
+                                        Foreground="White" 
+                                        HorizontalAlignment="Right"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Foreground="#EEEEEE"
+                       FontSize="20"
+                       FontFamily="Montserrat"
+                       FontWeight="Medium"
+                       Text="Omar Medina"/>
+                    <TextBlock HorizontalAlignment="Left"
+                           Grid.Column="1"
+                       VerticalAlignment="Center"
+                       Foreground="#EEEEEE"
+                       FontSize="15"
+                       FontFamily="Montserrat"
+                       FontWeight="Light"
+                       Text="Administrador"/>
+                </StackPanel>
+            </WrapPanel>
+            <TextBlock Grid.Column="1"
+                       Name="Tb_TituloVentana"
+                        Text="Inicio"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Foreground="#EEEEEE"
+                        FontSize="40"
+                        FontWeight="ExtraBold"
+                        FontFamily="Montserrat" Margin="320 0 0 0"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Background="GhostWhite">
+            <Image Source="Assets/Logo-SSA.png"/>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region SIDE MENU -->
+        <Grid HorizontalAlignment="Stretch" Grid.Row="1" Background="#232323">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <StackPanel Margin="10 10 10 10">
+
+                    <TextBlock Text="Entidad:"
+                               Style="{StaticResource Style_TextLabel}"
+                               HorizontalAlignment="Center"
+                               Foreground="White"
+                               Margin="0 20 0 0"/>
+
+                    <ComboBox HorizontalAlignment="Center" 
+                                Name="Cb_Entidad"
+                                IsReadOnly="True"
+                                VerticalAlignment="Center"
+                                Margin="0 0 0 50"
+                                Width="170"
+                                BorderBrush="#EEEEEE"
+                                Foreground="#EEEEEE"
+                                FontFamily="Montserrat"
+                                FontWeight="Light"
+                                FontSize="18">
+                        <ComboBoxItem Content="Conductor" HorizontalAlignment="Left" Width="180" Foreground="Black"/>
+                        <ComboBoxItem Content="Vehículo" HorizontalAlignment="Left" Width="180" Foreground="Black"/>
+                        <ComboBoxItem Content="Servicio" HorizontalAlignment="Left" Width="180" Foreground="Black"/>
+                        <ComboBoxItem Content="Mantenimiento" HorizontalAlignment="Left" Width="180" Foreground="Black"/>
+                        <ComboBoxItem Content="Reporte" HorizontalAlignment="Left" Width="180" Foreground="Black"/>
+                    </ComboBox>
+
+                    <!--#region Boton Registrar-->
+                    <Button Name="Btn_Registrar"
+                            Margin="0 10 0 10"
+                            Width="200" 
+                            BorderThickness="5 5 5 5"
+                            Click="Btn_Registrar_Click">
+                        <Grid Width="auto" RenderTransformOrigin="0.406,0.614">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="47"/>
+                                <ColumnDefinition Width="233"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Kind="Register"
+                                                     Grid.Column="0"
+                                                     Width="20" 
+                                                     Height="20" 
+                                                     Foreground="White" 
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Right"
+                                                     Margin="0,2,10,2"/>
+
+                            <TextBlock
+                                HorizontalAlignment="Left"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Width="78"
+                                FontSize="18"
+                                Text="Registrar" 
+                                Height="24"/>
+                        </Grid>
+                    </Button>
+                    <!--#endregion-->
+
+                    <!-- #region Boton Actualizar -->
+                    <Button x:Name="Btn_Actualizar"
+                            Margin="0 10 0 10"
+                            Width="200" 
+                            BorderThickness="5"
+                            Click="Btn_Actualizar_Click">
+                        <Grid Width="auto" RenderTransformOrigin="0.406,0.614">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="47"/>
+                                <ColumnDefinition Width="233"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Kind="Update"
+                                                     Grid.Column="0"
+                                                     Width="20" 
+                                                     Height="20" 
+                                                     Foreground="White" 
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Right"
+                                                     Margin="0,2,10,2"/>
+
+                            <TextBlock
+                                HorizontalAlignment="Left"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Width="85"
+                                FontSize="18"
+                                Text="Actualizar" 
+                                Height="24"/>
+                        </Grid>
+                    </Button>
+                    <!--#endregion-->
+
+                    <!-- #region Boton Eliminar -->
+                    <Button Margin="0 10 0 10"
+                            Name="Btn_Eliminar"
+                            Width="200"
+                            Click="Btn_Eliminar_Click"
+                            BorderThickness="5">
+                        <Grid Width="auto" RenderTransformOrigin="0.406,0.614">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="47"/>
+                                <ColumnDefinition Width="233"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Kind="Delete"
+                                                     Grid.Column="0"
+                                                     Width="20" 
+                                                     Height="20" 
+                                                     Foreground="White" 
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Right"
+                                                     Margin="0,2,10,2"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Eliminar" 
+                                Height="24" Margin="0,0,148,0"/>
+                        </Grid>
+                    </Button>
+                    <!--#endregion-->
+
+                    <!-- #region Boton Consultar -->
+                    <Button Margin="0 10 0 10" Width="200" BorderThickness="5">
+                        <Grid Width="auto" RenderTransformOrigin="0.406,0.614">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="47"/>
+                                <ColumnDefinition Width="233"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Kind="Search"
+                                                     Grid.Column="0"
+                                                     Width="20" 
+                                                     Height="20" 
+                                                     Foreground="White" 
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Right"
+                                                     Margin="0,2,10,2"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Consultar" 
+                                Height="24" Margin="0,0,148,0"/>
+                        </Grid>
+                    </Button>
+                    <!--#endregion-->
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region PANTALLA PRINCIPAL -->
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <!--<RowDefinition Height="30"/>-->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="No se que poner en el inicio" 
+               HorizontalAlignment="Center"
+               Margin="0 50 0 0"
+               VerticalAlignment="Top" 
+               FontSize="36" 
+               RenderTransformOrigin="0.476,-0.429"
+               FontFamily="SegoeUI" Width="492"/>
+            <DataGrid
+                  Name="DataGridConductores"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  IsReadOnly="True"
+                  Height="468"
+                  Margin="90,135,0,0" 
+                  Grid.Row="1"
+                  Width="806"/>
+            <ContentControl Grid.Row="1" 
+                        Content="{Binding}"/>
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+</Window>
